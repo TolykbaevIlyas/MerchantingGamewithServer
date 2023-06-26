@@ -29,7 +29,7 @@ CREATE TABLE `dealer` (
   `money` int NOT NULL,
   `weight` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `dealer` (
 
 LOCK TABLES `dealer` WRITE;
 /*!40000 ALTER TABLE `dealer` DISABLE KEYS */;
-INSERT INTO `dealer` VALUES (45,'Ilyas',5,75556,87),(46,'Game',8,87700,81),(68,'Masd',5,109017,107);
+INSERT INTO `dealer` VALUES (45,'Ilyas',5,75556,87),(46,'Game',8,87700,81),(68,'Masd',5,109017,107),(69,'Martin',3,145566,101),(70,'Dima',2,76221,59),(71,'Tima',4,83279,111),(72,'Karim',8,62081,128),(73,'Umar',4,136436,122),(74,'Lana',6,114926,65);
 /*!40000 ALTER TABLE `dealer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-26 12:00:23
+-- Dump completed on 2023-06-27  0:06:56

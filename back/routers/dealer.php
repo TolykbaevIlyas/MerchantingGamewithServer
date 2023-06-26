@@ -22,20 +22,21 @@
                     $speed = rand(2, 8);
                     $money =rand(50000, 150000);
                     $userInsertsResult = $Link->query("INSERT INTO `dealer` (`login`, `speed`, `money`, `weight`) VALUES ('$login', '$speed', '$money', '$weight')");
-                    // $dealerId = $Link->query("SELECT id from dealer")->fetch_assoc();
-                    // $saveNum = time() . $dealerId['id'];
-                    // $dealerClearId = $dealerId['id'];
+                    $dealerId = $Link->query("SELECT id from dealer where login='$login'")->fetch_assoc();
+                    $saveNum = time() . $dealerId['id'];
+                    $dealerClearId = $dealerId['id'];
 
                     $city = $Link->query("SELECT * from cities");
 
-                    // while($row = $city->fetch_array(MYSQLI_ASSOC)){
-                    //      $cityInfo[] = (['id' => $row['id'], 'name' => $row['name'], 'distance' => $row['distance']]);
-                    // }
+                    while($row = $city->fetch_array(MYSQLI_ASSOC)){
+                         $cityInfo[] = (['id' => $row['id'], 'name' => $row['name'], 'distance' => $row['distance']]);
+                    }
 
-                    // $info = $cityInfo[rand(0 ,count($dealerInfo) - 1)];
-                    // $cityId = $info['id'];
+                    $info = $cityInfo[rand(0 ,count($cityInfo) - 1)];
+                    $cityName = $info['name'];
+                    $cityDistance = $info['distance'];
 
-                    // $saves = $Link->query("INSERT INTO `saves` ( `number`, `loginID`, `products`, `city`, `event`) VALUES ('$saveNum', '$dealerClearId', '1', '$cityId', '1')");
+                    $saves = $Link->query("INSERT INTO `playersaves` (`SaveName`, `playerID`, `city`, `distance`, `speed`, `money`, `weight`) VALUES ('$saveNum', '$dealerClearId', '$cityName', '$cityDistance', '$speed', '$money', '$weight')");
                     echo json_encode(['access' => true, 'login' => $login, 'dealer' => $dealer['login']]);
                 }else{
                     echo json_encode(['access' => false, 'login' => $login, 'dealer' => $dealer['login']]);

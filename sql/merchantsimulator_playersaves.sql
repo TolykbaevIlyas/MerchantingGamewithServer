@@ -16,39 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `saves`
+-- Table structure for table `playersaves`
 --
 
-DROP TABLE IF EXISTS `saves`;
+DROP TABLE IF EXISTS `playersaves`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `saves` (
+CREATE TABLE `playersaves` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `number` int NOT NULL,
-  `loginID` int NOT NULL,
-  `products` int NOT NULL,
-  `city` int NOT NULL,
-  `event` int NOT NULL,
+  `SaveName` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `playerID` int NOT NULL,
+  `city` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `distance` int NOT NULL,
+  `speed` int NOT NULL,
+  `money` int NOT NULL,
+  `weight` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `loginID` (`loginID`,`products`,`city`,`event`),
-  KEY `products` (`products`),
-  KEY `city` (`city`),
-  KEY `event` (`event`),
-  CONSTRAINT `saves_ibfk_1` FOREIGN KEY (`loginID`) REFERENCES `dealer` (`id`),
-  CONSTRAINT `saves_ibfk_2` FOREIGN KEY (`products`) REFERENCES `products` (`id`),
-  CONSTRAINT `saves_ibfk_3` FOREIGN KEY (`city`) REFERENCES `cities` (`id`),
-  CONSTRAINT `saves_ibfk_4` FOREIGN KEY (`event`) REFERENCES `event` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `playerID` (`playerID`),
+  CONSTRAINT `playersaves_ibfk_1` FOREIGN KEY (`playerID`) REFERENCES `dealer` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `saves`
+-- Dumping data for table `playersaves`
 --
 
-LOCK TABLES `saves` WRITE;
-/*!40000 ALTER TABLE `saves` DISABLE KEYS */;
-INSERT INTO `saves` VALUES (1,123,45,1,3,1);
-/*!40000 ALTER TABLE `saves` ENABLE KEYS */;
+LOCK TABLES `playersaves` WRITE;
+/*!40000 ALTER TABLE `playersaves` DISABLE KEYS */;
+INSERT INTO `playersaves` VALUES (3,'168780220871',71,'Almaty',60,4,83279,111),(4,'168780225172',72,'Almaty',60,8,62081,128),(5,'168780226073',73,'Almaty',60,4,136436,122),(6,'168780229274',74,'Aktobe',50,6,114926,65);
+/*!40000 ALTER TABLE `playersaves` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-26 12:00:24
+-- Dump completed on 2023-06-27  0:06:56

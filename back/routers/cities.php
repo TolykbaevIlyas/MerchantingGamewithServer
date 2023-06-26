@@ -3,14 +3,12 @@
         global $Link;
         switch ($method) {
             case 'GET':
-                $dealer = $Link->query("SELECT * from cities");
-
-                while($row = $dealer->fetch_array(MYSQLI_ASSOC)){
-                     $dealerInfo[] = (['id' => $row['id'], 'name' => $row['name'], 'distance' => $row['distance']]);
-                    }
-
-                //echo rand(5, 15)
-                echo json_encode($dealerInfo[rand(0,count($dealerInfo) - 1)]);
+                $login = $requestData->parameters['login'];
+                $dealer = $Link->query("SELECT id from dealer Where login='$login'")->fetch_assoc();
+                $dealerId = $dealer['id'];
+                $city = $Link->query("SELECT * FROM `playersaves` Where playerID='$dealerId'")->fetch_assoc();
+                $CityInfo[] = (['id' => $city['id'], 'name' => $city['city'], 'distance' => $city['distance']]);
+                echo json_encode($CityInfo);
 
                 break;
             case 'POST':

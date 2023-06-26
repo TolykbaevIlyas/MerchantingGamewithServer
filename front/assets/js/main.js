@@ -5,6 +5,7 @@ let tab = document.getElementsByClassName('tab');;
 let tabContent = document.getElementsByClassName('tabContent');
 let AddBtn = document.getElementById('AddBtn');
 let add = document.getElementById('add');
+let startAdventure = document.getElementById('startAdventure');
 
 let cityName = document.getElementById('cityName');
 let cityDistance = document.getElementById('cityDistance');
@@ -48,17 +49,23 @@ let CostOfProduct = 0;
 
 let click = 0;
 let click2 = 0;
+
+startAdventure.setAttribute("disabled", "disabled");
+startAdventure.style.backgroundColor = "grey";
+startAdventure.style.cursor = "default";
     
 class city{
     getProducts(){
-        fetch('http://zadanie.kz/cities')
+        let loginName = localStorage.getItem("login");
+        fetch('http://zadanie.kz/cities?login=' + loginName)
         .then(function (response) {
             response.json().then((data) => {
-                //console.log(data["name"]);
+                let dataN = data[0];
+                //console.log(dataN);
                 //console.log(data[i]["name"]);
                 info.innerHTML += `
-                    <p>Город: ${data["name"]}</p>
-                    <p>Расстояние до города: ${data["distance"]}</p>`
+                    <p>Город: ${dataN["name"]}</p>
+                    <p>Расстояние до города: ${dataN["distance"]}</p>`
                 });
     })
     }
@@ -444,6 +451,7 @@ infoTable.onclick = function(event) {
         let storageWeght = savedInfo['weight'];
         let currentMoney = Money.textContent;
         let currentWeight = weight.textContent;
+        adventureBtn(checking);
 
         if(checking){
             if(((currentMoney - block[2].textContent) <= 0) || ((currentWeight - block[1].textContent) <= 0)){
@@ -465,20 +473,11 @@ infoTable.onclick = function(event) {
         }  
 
         function Cheking(){
-            if(currentMoney < 0 || currentWeight < 0){
-                console.log("asdfasdfasdf");
-                // if(event.target.checked == false){
-                //     event.target.setAttribute("disabled", "disabled");
-                // }
-            }else{
-                //console.log(checkboxInfo);
-                for (const key in checkboxInfo) {
-                    //console.log(checkboxInfo[key]);
-                    //checkboxInfo[key].removeAttribute("disabled");
+            if(!(currentMoney < 0) || !(currentWeight < 0)){
+                for(let i = 0; i< checkboxInfo.length; i++){
+                    checkboxInfo[i].removeAttribute("disabled");
                 }
-                //event.target.removeAttribute("disabled");
             }
-            console.log("adsf");
         }
 
     }else{
@@ -486,11 +485,41 @@ infoTable.onclick = function(event) {
     }
 }
 
+//StartAdventureButton Listener
+
+startAdventure.addEventListener('click',()=>{
+    let checkboxInfo = document.getElementsByClassName('checkboxClass');
+    for(let i = 0;i<checkboxInfo.length;i++){
+        if(checkboxInfo[i].checked){
+            let block = document.getElementsByClassName(`${checkboxInfo[i].value}`);
+            console.log(block[0].textContent);
+            console.log(block[1].textContent);
+            console.log(block[2].textContent);
+            console.log(block[3].textContent);
+            console.log(block[4].textContent);
+            console.log(block[5].textContent);
+            console.log(block[6].textContent);
+            console.log("_______");
+        }
+    }
+})
+
 // работа с checkbox и объявление эвентов, плюс работа с городами плюс сохранение, плюс дизайн
 //function
 
 
-
+function adventureBtn(btnInfo){
+    if(btnInfo){
+        startAdventure.removeAttribute("disabled");
+        startAdventure.style.backgroundColor = "black";
+        startAdventure.style.cursor = "pointer";
+    }else{
+        startAdventure.setAttribute("disabled", "disabled");
+        startAdventure.style.backgroundColor = "grey";
+        startAdventure.style.cursor = "default";
+    }
+    
+}
 
 
 //main function

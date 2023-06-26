@@ -8,13 +8,18 @@ table, th, td {
 }
 
 #exit{
-  background-color: grey;
+  background-color: black;
   padding: 5px 30px;
   font-weight: bold;
   border-radius: 10px;
   color: white;
   cursor: pointer;
   text-align: center;
+}
+
+#exit:hover{
+  transition: 0.1s linear;
+  background-color: grey;
 }
 
 #add{
@@ -57,12 +62,17 @@ table, th, td {
 
 #AddBtn{
   padding: 5px 20px;
-  background-color: grey;
+  background-color: black;
   font-weight: bold;
   border-radius: 10px;
   color: white;
   cursor: pointer;
   text-align: center;
+}
+
+#AddBtn:hover{
+  transition: 0.1s linear;
+  background-color: grey;
 }
 
 .AddToDbBtn{
@@ -75,4 +85,20 @@ table, th, td {
 
 .infoFlexer{
   display: flex;
+}
+
+#startAdventure{
+  margin-top: 20px;
+  background-color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#startAdventure:hover{
+  transition: 0.1s linear;
+  background-color: grey;
 }
