@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/gameinner.css">
+</head>
+<body>
+    <div class="main">
+        <div id="playground">
+            <div id="info">
+    
+            </div>
+            <table id="infoTable">
+    
+            </table>
+        </div>
+        <div class="playerMenu">
+            <div id="exit">
+                <p>Exit</p>
+            </div>
+            <p id="AddBtn">Add</p>
+            <div id="add">
+                <p class="tab whiteborder">city</p>
+                <p class="tab">event</p>
+                <p class="tab">product</p>
+                <div class="tabContent">
+                    <p>City Name:</p>
+                    <input type="text" name="" id="cityName">
+                    <p>City distance:</p>
+                    <input type="number" name="" id="cityDistance" min="50" max="100" value="50"><br>
+                    <button class="AddToDbBtn" id="cityAdd">Add</button>
+                </div>
+                <div class="tabContent">
+                    <p>Event Name:</p>
+                    <input type="text" name="" id="eventName">
+                    <p>Event Description:</p>
+                    <input type="text" name="" id="eventDescription">
+                    <p>Speed debuff:</p>
+                    <input type="number" value="0" id="eventSpeedDebuff">
+                    <p>Luck debuff:</p>
+                    <input type="number" name="" value="0" id="eventLuckDebuff"><br>
+                    <button class="AddToDbBtn" id="eventAdd">Add</button>
+                </div>
+                <div class="tabContent">
+                    <p>Product Name:</p>
+                    <input type="text" name="" id="productName">
+                    <p>Product weight:</p>
+                    <input type="number" name="" id="productWeight">
+                    <p>Product cost:</p>
+                    <input type="number" value="0" id="productCost">
+                    <p>Product type:</p>
+                    <select class="form-select" id="productType">
+                        <option value="Мясо" selected>Выберите</option>
+                        <option value="Мясо">Мясо</option>
+                        <option value="Сухофрукты">Сухофрукты</option>
+                        <option value="Мука">Мука</option>
+                        <option value="Ткани">Ткани</option>
+                        <option value="Краска">Краска</option>
+                      </select>
+                    <p>Product status:</p>
+                    <select class="form-select" id="productStatus">
+                        <option value="1.2" selected>Выберите</option>
+                        <option value="1.2">1.2</option>
+                        <option value="0.95">0.95</option>
+                        <option value="0.55">0.55</option>
+                        <option value="0.25">0.25</option>
+                        <option value="0.1">0.1</option>
+                      </select>
+                      <div id="productStatusInfo">
+                        <p>Информация о статусе продукта</p>
+                    </div>
+                    <br>
+                    <button class="AddToDbBtn" id="productAdd">Add</button>
+                </div>
+                <div id="addErrors"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

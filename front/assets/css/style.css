@@ -1,0 +1,62 @@
+.MenuBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+h1{
+    text-align: center;
+    margin-top: 100px;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+#inputGame{
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;
+    /* margin-top: 180px; */
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#PlayButton{
+    width: 100px;
+    background-color: #000000;
+    color:white;
+    font-size: bold;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+#PlayButton:hover{
+    color:#000000;
+    background-color: #6a6a6a;
+    transition: 0.1s linear;
+}
+
+
+
+.TravelText{
+    font-size: 100px;
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.RandEvent{
+    width: 300px;
+    margin-top: 100px;
+}
+
+#AccessText{
+    margin:0 auto;
+    color:red;
+}

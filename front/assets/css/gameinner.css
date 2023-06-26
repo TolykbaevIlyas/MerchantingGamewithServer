@@ -1,0 +1,74 @@
+table, th, td {
+    border:1px solid black;
+}
+
+.main{
+  display: flex;
+  justify-content: space-between;
+}
+
+#exit{
+  background-color: grey;
+  padding: 5px 30px;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+#add{
+  position: relative;
+  top: -1000px;
+  transition: .1s linear;
+}
+
+#add .tab{
+  display: inline-block;
+  padding:5px 10px;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+}
+
+#add .whiteborder{
+  border:1px solid #707070;
+  border-bottom: 1px solid #fff;
+  border-radius:3px 3px 0 0;
+}
+
+#add .tabContent{
+  width: 300px;
+  border:1px solid #707070;
+  position: relative;
+  top: -1px;
+  z-index: 1;
+  padding: 10px;
+  border-radius:0 0 3px 3px;
+}
+
+#add .hide{
+  display: none;
+}
+
+#add .show{
+  display: block;
+}
+
+#AddBtn{
+  padding: 5px 20px;
+  background-color: grey;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.AddToDbBtn{
+  margin-top: 10px;
+}
+
+#productStatusInfo{
+  cursor: pointer;
+}
