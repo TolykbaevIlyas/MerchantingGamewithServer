@@ -72,11 +72,29 @@ class dealer{
         .then(function (response) {
             response.json().then((data) => {
                 //console.log(data);
+                let DealerInfo = {login: data[0]["login"] ,Speed : data[0]["speed"], money: data[0]["money"],weight: data[0]["weight"]}
+                localStorage.setItem("dealerInfo", JSON.stringify(DealerInfo));
                 info.innerHTML += `
                     <p>Логин: ${data[0]["login"]}</p>
-                    <p id="Speed">Скорость передвижения: ${data[0]["speed"]} км</p>
-                    <p id="Money">Количестов денег: ${data[0]["money"]} тг</p>
-                    <p id="weight">Грузоподъемность: ${data[0]["weight"]} кг</p>
+                    
+
+                    <div class="infoFlexer">
+                        <p>Скорость передвижения:</p>
+                        <p id="Speed"> ${data[0]["speed"]}</p>
+                        <p>км</p>
+                    </div>
+                    <div class="infoFlexer">
+                        <p>Количество денег:</p>         
+                        <p id="Money">${data[0]["money"]}</p>
+                        <p>тг</p>
+                    </div>
+                    <div class="infoFlexer">
+                        <p>Грузоподъемность: </p>
+                        <p id="weight">${data[0]["weight"]}</p>
+                        <p>кг</p>
+                    </div>
+                    
+                    
                 `
 
              });
@@ -94,12 +112,12 @@ class product{
                     //console.log(data[i]["name"]);
                     infoTable.innerHTML += `<tr>
                     <td class="${data[i]['name']} ${data[i]['name']}name">${data[i]['name']}</td>
-                    <td class="${data[i]['name']} ${data[i]['name']}weight">${data[i]['weight']}</td>
-                    <td class="${data[i]['name']} ${data[i]['name']}cost">${data[i]['cost']}</td>
-                    <td class="${data[i]['name']} ${data[i]['name']}type">${data[i]['type']}</td>
-                    <td class="${data[i]['name']} ${data[i]['name']}status">${data[i]['status']}</td>
-                    <td class="${data[i]['name']} ${data[i]['name']}CostOfSellingPlace">${data[i]['CostOfSellingPlace']}</td>
-                    <td class="${data[i]['name']} ${data[i]['name']}CheckBox"><input type="checkbox" class="${data[i]['name']} ${data[i]['name']}cb checkboxClass" tagName="${data[i]['name']}" id="checkbox">
+                    <td class="${data[i]['name']} ${data[i]['name']}weight" value="${data[i]['weight']}">${data[i]['weight']}</td>
+                    <td class="${data[i]['name']} ${data[i]['name']}cost" value="${data[i]['cost']}">${data[i]['cost']}</td>
+                    <td class="${data[i]['name']} ${data[i]['name']}type" value="${data[i]['type']}">${data[i]['type']}</td>
+                    <td class="${data[i]['name']} ${data[i]['name']}status" value="${data[i]['status']}">${data[i]['status']}</td>
+                    <td class="${data[i]['name']} ${data[i]['name']}CostOfSellingPlace" value="${data[i]['CostOfSellingPlace']}">${data[i]['CostOfSellingPlace']}</td>
+                    <td class="${data[i]['name']} ${data[i]['name']}CheckBox"><input value="${data[i]['name']}" type="checkbox" class="${data[i]['name']} ${data[i]['name']}cb checkboxClass" tagName="${data[i]['name']}" id="checkbox">
                 </tr>`
                 }
             });
@@ -159,6 +177,7 @@ function showTabsContent(b){
 
 exit.addEventListener('click',()=>{
     localStorage.removeItem("login");
+    localStorage.removeItem('dealerInfo');
     document.location.href = "index.html";
     console.log("exit");
 })
@@ -411,11 +430,67 @@ productAdd.addEventListener('click',()=>{
 //Checkbox Listener
 
 infoTable.onclick = function(event) {
-    let target = event.target;
-    console.log(target);
+    let checkboxInfo = document.getElementsByClassName('checkboxClass');
+    let target = event.target.value;
+    let id = event.target.type;
+    if(id == "checkbox"){
+        let block = document.getElementsByClassName(`${target}`);
+        let Money = document.getElementById('Money');
+        let Speed = document.getElementById('Speed');
+        let weight = document.getElementById('weight');
+        let savedInfo = JSON.parse(localStorage.getItem('dealerInfo'));
+        let checking = event.target.checked;
+        let storageMoney = savedInfo['money'];
+        let storageWeght = savedInfo['weight'];
+        let currentMoney = Money.textContent;
+        let currentWeight = weight.textContent;
+
+        if(checking){
+            if(((currentMoney - block[2].textContent) <= 0) || ((currentWeight - block[1].textContent) <= 0)){
+                event.target.setAttribute("disabled","disabled")
+                event.target.checked = false;
+            }else{
+                currentMoney = currentMoney - block[2].textContent;
+                currentWeight = currentWeight -block[1].textContent;
+                Money.innerHTML = `${currentMoney}`;
+                weight.innerHTML = `${currentWeight}`;
+                Cheking();
+            }
+        }else{
+            currentMoney = parseInt(currentMoney) + parseInt(block[2].textContent);
+            currentWeight = parseInt(currentWeight) + parseInt(block[1].textContent);
+            Money.innerHTML = `${currentMoney}`;
+            weight.innerHTML = `${currentWeight}`;
+            Cheking();
+        }  
+
+        function Cheking(){
+            if(currentMoney < 0 || currentWeight < 0){
+                console.log("asdfasdfasdf");
+                // if(event.target.checked == false){
+                //     event.target.setAttribute("disabled", "disabled");
+                // }
+            }else{
+                //console.log(checkboxInfo);
+                for (const key in checkboxInfo) {
+                    //console.log(checkboxInfo[key]);
+                    //checkboxInfo[key].removeAttribute("disabled");
+                }
+                //event.target.removeAttribute("disabled");
+            }
+            console.log("adsf");
+        }
+
+    }else{
+        console.log("error");
+    }
 }
 
 // работа с checkbox и объявление эвентов, плюс работа с городами плюс сохранение, плюс дизайн
+//function
+
+
+
 
 
 //main function

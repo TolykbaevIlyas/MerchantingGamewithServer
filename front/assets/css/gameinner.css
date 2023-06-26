@@ -72,3 +72,7 @@ table, th, td {
 #productStatusInfo{
   cursor: pointer;
 }
+
+.infoFlexer{
+  display: flex;
+}
