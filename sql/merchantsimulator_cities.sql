@@ -36,7 +36,7 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,'Almaty',60),(2,'Shimkent',80),(3,'Aktobe',50),(4,'Michigan',1000),(7,'Cobalt',0);
+INSERT INTO `cities` VALUES (1,'Almaty',60),(2,'Shimkent',80),(3,'Aktobe',50);
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-27  0:06:56
+-- Dump completed on 2023-06-28 19:46:58

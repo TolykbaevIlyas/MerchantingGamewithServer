@@ -23,7 +23,7 @@
                     $money =rand(50000, 150000);
                     $userInsertsResult = $Link->query("INSERT INTO `dealer` (`login`, `speed`, `money`, `weight`) VALUES ('$login', '$speed', '$money', '$weight')");
                     $dealerId = $Link->query("SELECT id from dealer where login='$login'")->fetch_assoc();
-                    $saveNum = time() . $dealerId['id'];
+                    $saveNum = date('Y-m-d H:i');
                     $dealerClearId = $dealerId['id'];
 
                     $city = $Link->query("SELECT * from cities");

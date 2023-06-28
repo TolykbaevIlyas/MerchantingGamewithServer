@@ -55,7 +55,7 @@ startAdventure.style.backgroundColor = "grey";
 startAdventure.style.cursor = "default";
     
 class city{
-    getProducts(){
+    getCity(){
         let loginName = localStorage.getItem("login");
         fetch('http://zadanie.kz/cities?login=' + loginName)
         .then(function (response) {
@@ -64,8 +64,8 @@ class city{
                 //console.log(dataN);
                 //console.log(data[i]["name"]);
                 info.innerHTML += `
-                    <p>Город: ${dataN["name"]}</p>
-                    <p>Расстояние до города: ${dataN["distance"]}</p>`
+                    Город:<p id="city">${dataN["name"]}</p>
+                    Расстояние до города:<p id="cityDistance">${dataN["distance"]}</p>`
                 });
     })
     }
@@ -158,7 +158,7 @@ class gameevent{
 let City = new city();
 let Dealer = new dealer();
 let Product = new product();
-// let GameEvent = new gameevent();
+
 
 
 // All function
@@ -489,17 +489,43 @@ infoTable.onclick = function(event) {
 
 startAdventure.addEventListener('click',()=>{
     let checkboxInfo = document.getElementsByClassName('checkboxClass');
+    let product;
+    let login = localStorage.getItem("login");
     for(let i = 0;i<checkboxInfo.length;i++){
         if(checkboxInfo[i].checked){
             let block = document.getElementsByClassName(`${checkboxInfo[i].value}`);
-            console.log(block[0].textContent);
-            console.log(block[1].textContent);
-            console.log(block[2].textContent);
-            console.log(block[3].textContent);
-            console.log(block[4].textContent);
-            console.log(block[5].textContent);
-            console.log(block[6].textContent);
-            console.log("_______");
+            let Money = document.getElementById('Money');
+            let Speed = document.getElementById('Speed');
+            let weight = document.getElementById('weight');
+            let cityName = document.getElementById('city');
+            let cityDist = document.getElementById('cityDistance');
+
+            let productNa = block[0].textContent;
+            let currentMoney = Money.textContent;
+            let currentWeight = weight.textContent;
+            let currentSpeed = Speed.textContent;
+            let currentCityName = cityName.textContent;
+            let currentCityDistance = cityDist.textContent;
+
+            product = JSON.stringify({name: productNa, login: login, cost:currentMoney, weight:currentWeight, speed:currentSpeed, cityName: currentCityName, cityDistance: currentCityDistance});
+
+        fetch('http://zadanie.kz/save', {
+            method: 'post',
+            body: product,
+            headers: {
+            'content-type': 'application/json',
+            'Accept': 'application/x-www-form-urlencoded;charset=UTF-8'
+            }
+        }).then(function (response) {
+            //console.log(response);
+            response.json().then((data) => {
+            //console.log(data);
+            localStorage.setItem("adventureStart","true");
+            document.location.href = "event.html";
+            });
+        })
+
+
         }
     }
 })
@@ -521,13 +547,46 @@ function adventureBtn(btnInfo){
     
 }
 
+function SaveServer(){
+    fetch('http://zadanie.kz/save', {
+        method: 'post',
+        body: JSON.stringify({login: loginName}),
+        headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/x-www-form-urlencoded;charset=UTF-8'
+    }
+    }).then(function (response) {
+        //console.log(response);
+        response.json().then((data) => {
+            //console.log(data);
+            if(data['access'] == false){
+                AccessText.innerHTML += `<p>Логин ${loginName} Занят введите другой. Если это вы, то продолжите</p>`
+                AccessText.innerHTML += `<button id="contin"> Продолжить </button>`
+                let contin = document.getElementById('contin');
+                contin.addEventListener('click',()=>{
+                    localStorage.setItem("login",loginName);
+                    document.location.href = "gameInner.html";
+                })
+                // inputGame.value = "";
+            }else{
+                localStorage.setItem("login",loginName);
+                document.location.href = "gameInner.html";
+            }
+         });
+        })
+}
 
 //main function
 function Main(){
-    hideTabsContent(1);
-    City.getProducts();
-    Product.getProducts();
-    Dealer.getDealerInfo();
+    let adventure = localStorage.getItem("adventureStart")
+    if(!adventure){
+        hideTabsContent(1);
+        City.getCity();
+        Product.getProducts();
+        Dealer.getDealerInfo();
+    }else{
+        document.location.href = "event.html";
+    }
     //console.log(localStorage.getItem("login"));
 }
 
