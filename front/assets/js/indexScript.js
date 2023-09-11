@@ -29,7 +29,7 @@ inputGame.addEventListener("input",(event)=>{
 })
 
 PlayButton.addEventListener('click',()=>{
-    fetch('http://zadanie.kz/dealer', {
+    fetch('https://admin.tolykbaiev.kz/dealer', {
         method: 'post',
         body: JSON.stringify({login: loginName}),
         headers: {

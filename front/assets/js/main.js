@@ -57,7 +57,7 @@ startAdventure.style.cursor = "default";
 class city{
     getProducts(){
         let loginName = localStorage.getItem("login");
-        fetch('http://zadanie.kz/cities?login=' + loginName)
+        fetch('https://admin.tolykbaiev.kz/cities?login=' + loginName)
         .then(function (response) {
             response.json().then((data) => {
                 let dataN = data[0];
@@ -75,7 +75,7 @@ class city{
 class dealer{
     getDealerInfo(){
         let loginName = localStorage.getItem("login");
-        fetch('http://zadanie.kz/dealer?login=' + loginName)
+        fetch('https://admin.tolykbaiev.kz/dealer?login=' + loginName)
         .then(function (response) {
             response.json().then((data) => {
                 //console.log(data);
@@ -111,7 +111,7 @@ class dealer{
 
 class product{
     getProducts(){
-        fetch('http://zadanie.kz/products')
+        fetch('https://admin.tolykbaiev.kz/products')
         .then(function (response) {
             response.json().then((data) => {
                 //console.log(data);
@@ -243,7 +243,7 @@ cityDistance.addEventListener("input",(event)=>{
 })
 
 cityAdd.addEventListener('click',()=>{
-    fetch('http://zadanie.kz/cities', {
+    fetch('https://admin.tolykbaiev.kz/cities', {
         method: 'post',
         body: JSON.stringify({cityName: NameOfCity, cityDistance: DistanceOfCity }),
         headers: {
@@ -310,7 +310,7 @@ eventLuckDebuff.addEventListener("input",(event)=>{
 })
 
 eventAdd.addEventListener('click',()=>{
-    fetch('http://zadanie.kz/event', {
+    fetch('https://admin.tolykbaiev.kz/event', {
         method: 'post',
         body: JSON.stringify({NameOfEvent: NameOfEvent, DiscriptionOfEvent: DiscriptionOfEvent, SpeedDebuffOfEvent: SpeedDebuffOfEvent, LuckDebuffOfEvent: LuckDebuffOfEvent}),
         headers: {
@@ -405,7 +405,7 @@ productStatusInfo.addEventListener('click',()=>{
 })
 
 productAdd.addEventListener('click',()=>{
-    fetch('http://zadanie.kz/products', {
+    fetch('https://admin.tolykbaiev.kz/products', {
         method: 'post',
         body: JSON.stringify({NameOfProduct: NameOfProduct, WeightfOfProduct: WeightfOfProduct, CostOfProduct: CostOfProduct, TypeOfProduct: TypeOfProduct, StatusOfProduct: StatusOfProduct}),
         headers: {

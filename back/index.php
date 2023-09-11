@@ -24,7 +24,7 @@
     header("Access-Control-Allow-Headers:Origin, X-Request-With, Content-Type, Accept,Authorization");
     header('Content-type: application/json');
     
-    $Link = mysqli_connect("127.0.0.1", "root", "","merchantsimulator");
+    $Link = mysqli_connect("srv-pleskdb25.ps.kz:3306", "tolykbai_tolykbai", "g5x3_1i9n@RY","tolykbai_merchantsSimulator");
 
     if(!$Link){
 
